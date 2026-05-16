@@ -3,213 +3,1381 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="童鑫 - RoboMaster队长 | 机械设计制造及其自动化 | 机械结构设计与仿真分析">
+  <meta name="keywords" content="童鑫, RoboMaster, 机械设计, SolidWorks, ANSYS, 机甲大师">
+  <meta name="author" content="童鑫">
+  <meta property="og:title" content="童鑫 · 机械设计 | RM队长">
+  <meta property="og:description" content="两年RM，从队员到队长，8项国奖。用机械说话，用战绩证明。">
+  <meta property="og:type" content="website">
   <title>童鑫 · 机械设计 | RM队长</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
+    :root {
+      --primary: #1a56db;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --accent: #06b6d4;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --border: rgba(148, 163, 184, 0.1);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f0f4f8; color: #2d3748; }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+    /* 导航 */
     nav {
-      display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,100,200,0.15); position: sticky; top: 0; z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 5%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: var(--transition);
     }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
-    .nav-links a { color: #4a5568; text-decoration: none; margin-left: 1.5rem; font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
-    .nav-links a:hover { color: #1a56db; }
+
+    [data-theme="dark"] nav {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow);
+      padding: 0.75rem 5%;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .theme-toggle, .mobile-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .theme-toggle:hover, .mobile-toggle:hover {
+      background: var(--primary);
+      color: white;
+      transform: rotate(15deg);
+    }
+
+    .mobile-toggle { display: none; }
+
+    /* Hero区域 */
     .hero {
-      text-align: center; padding: 6rem 1rem 4rem;
-      background: linear-gradient(135deg, #e8f0fe 0%, #f0f4f8 50%, #e8f0fe 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 6rem 1rem 4rem;
+      overflow: hidden;
     }
-    .hero img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #1a56db; margin-bottom: 1.5rem; box-shadow: 0 8px 25px rgba(26,86,219,0.2); }
-    .hero h1 { font-size: 2.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem; }
-    .hero .tagline { font-size: 1.1rem; color: #1a56db; font-weight: 600; margin-bottom: 0.5rem; }
-    .hero p { max-width: 500px; margin: 0 auto; color: #4a5568; line-height: 1.7; font-size: 0.95rem; }
-    .section { padding: 5rem 5%; }
-    .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #1a202c; font-weight: 700; }
-    .section-title span { color: #1a56db; border-bottom: 3px solid #1a56db; padding-bottom: 0.3rem; }
-    .about-grid { display: flex; flex-wrap: wrap; gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .about-card {
-      background: #fff; border-radius: 16px; padding: 2rem; flex: 1 1 280px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04);
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(26, 86, 219, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+      z-index: -2;
     }
-    .about-card h3 { color: #1a56db; margin-bottom: 1rem; font-size: 1.1rem; }
-    .about-card p, .about-card li { color: #4a5568; line-height: 1.8; font-size: 0.9rem; }
-    .about-card ul { padding-left: 1.2rem; }
-    .cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 1000px; margin: 0 auto; }
-    .cert-grid img {
-      width: calc(25% - 0.75rem); min-width: 200px; border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: 0.3s; cursor: pointer;
-      border: 1px solid rgba(0,0,0,0.05); object-fit: cover; aspect-ratio: 4/3;
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(26, 86, 219, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 86, 219, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+      z-index: -1;
     }
-    .cert-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-    .cert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; }
-    .cert-overlay.active { display: flex; }
-    .cert-overlay img { max-width: 90%; max-height: 90%; border-radius: 8px; }
-    .cert-overlay .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; }
-    .project-grid { display: flex; flex-wrap: wrap; gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .project-card {
-      background: #fff; border-radius: 16px; padding: 2rem; flex: 1 1 400px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04);
+
+    .hero-content {
+      text-align: center;
+      max-width: 700px;
+      animation: fadeInUp 1s ease-out;
     }
-    .project-card h3 { color: #1a202c; margin-bottom: 0.5rem; }
-    .project-card .role { color: #1a56db; font-weight: 600; margin-bottom: 0.8rem; font-size: 0.9rem; }
-    .project-card p { color: #4a5568; line-height: 1.7; font-size: 0.9rem; }
-    .project-card .video-placeholder {
-      margin-top: 1rem; background: #f0f4f8; border-radius: 8px; height: 200px;
-      display: flex; align-items: center; justify-content: center; color: #a0aec0;
-      font-size: 0.9rem; border: 1px dashed #cbd5e0;
+
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
     }
-    .skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; max-width: 700px; margin: 0 auto; }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      box-shadow: 0 20px 40px rgba(26, 86, 219, 0.25);
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--primary);
+      border-right-color: var(--accent);
+      animation: spin 10s linear infinite;
+    }
+
+    .avatar-ring:nth-child(2) {
+      inset: -20px;
+      border-top-color: var(--accent);
+      border-right-color: var(--primary);
+      animation: spin 15s linear infinite reverse;
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      background: #10b981;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      z-index: 3;
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+
+    .hero .tagline {
+      font-size: 1.25rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+    }
+
+    /* 通用区块 */
+    .section {
+      padding: 5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* 卡片系统 */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* 关于我 */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .about-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .about-card p, .about-card li {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .about-card ul {
+      padding-left: 1.2rem;
+    }
+
+    .about-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(26, 86, 219, 0.05), rgba(6, 182, 212, 0.05));
+      border-radius: 12px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .highlight-box p {
+      color: var(--primary);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* 证书画廊 */
+    .cert-section {
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(26, 86, 219, 0.03) 50%, var(--bg) 100%);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .cert-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .cert-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .cert-overlay-text {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .cert-item:hover .cert-overlay-text {
+      opacity: 1;
+    }
+
+    .cert-overlay-text span {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* 灯箱 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 1rem;
+      transition: background 0.3s;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    /* 项目 */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-role {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(6, 182, 212, 0.1));
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .project-date {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .awards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .award-tag {
+      padding: 0.4rem 0.8rem;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #92400e;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .video-container {
+      margin-top: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      gap: 0.5rem;
+    }
+
+    .video-placeholder i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      opacity: 0.5;
+    }
+
+    /* 技能 */
+    .skills-section {
+      background: linear-gradient(135deg, rgba(26, 86, 219, 0.03), rgba(6, 182, 212, 0.03));
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
     .skill-tag {
-      background: #fff; border: 1px solid rgba(26,86,219,0.2); color: #1a56db;
-      padding: 0.6rem 1.3rem; border-radius: 25px; font-weight: 500; font-size: 0.9rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 0.8rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
     }
+
+    .skill-tag::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: -1;
+    }
+
+    .skill-tag:hover {
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(26, 86, 219, 0.2);
+    }
+
+    .skill-tag:hover::before {
+      opacity: 1;
+    }
+
+    .skill-tag i {
+      margin-right: 0.4rem;
+      color: var(--primary);
+      transition: color 0.3s;
+    }
+
+    .skill-tag:hover i {
+      color: white;
+    }
+
+    /* 联系 */
     .contact-card {
-      background: #fff; border-radius: 16px; padding: 2rem; max-width: 450px; margin: 0 auto;
-      text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .contact-card a {
-      display: inline-block; margin: 0.5rem; color: #1a56db; text-decoration: none;
-      font-weight: 500; transition: 0.3s;
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
-    .contact-card a:hover { color: #1040b0; }
-    footer { text-align: center; padding: 2rem; color: #a0aec0; font-size: 0.85rem; background: #fff; border-top: 1px solid rgba(0,0,0,0.04); }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .contact-link:hover {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(26, 86, 219, 0.2);
+    }
+
+    .contact-link i {
+      font-size: 1.2rem;
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    /* 浮动按钮 */
+    .float-actions {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .float-btn:hover {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-color: transparent;
+      transform: scale(1.1);
+    }
+
+    /* 动画 */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 响应式 */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 1.8rem; }
-      .nav-links a { margin-left: 0.8rem; font-size: 0.8rem; }
-      .cert-grid img { width: calc(50% - 0.5rem); min-width: 140px; }
+      .mobile-toggle { display: flex; }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .float-actions {
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+
+    /* 加载动画 */
+    .skeleton {
+      background: linear-gradient(90deg, var(--bg) 25%, var(--surface) 50%, var(--bg) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* 打印优化 */
+    @media print {
+      nav, .float-actions, .scroll-indicator, .theme-toggle, .mobile-toggle {
+        display: none !important;
+      }
+      .hero { min-height: auto; padding: 2rem 1rem; }
+      .card { break-inside: avoid; border: 1px solid #ddd; }
+      body { background: white; color: black; }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo">TONG XIN</div>
-    <div class="nav-links">
-      <a href="#home">首页</a>
-      <a href="#about">关于</a>
-      <a href="#certs">证书</a>
-      <a href="#projects">项目</a>
-      <a href="#skills">技能</a>
-      <a href="#contact">联系</a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">TONG XIN</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#certs">证书</a></li>
+        <li><a href="#projects">项目</a></li>
+        <li><a href="#skills">技能</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="切换主题">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" title="菜单">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
   <section id="home" class="hero">
-    <img src="https://i.postimg.cc/Njy3rmnz/IMG-20251021-223934.jpg" alt="童鑫">
-    <h1>童鑫</h1>
-    <div class="tagline">RoboMaster队长 | 机械设计 | 仿真分析 | 团队管理</div>
-    <p>文华学院 · 机械设计制造及其自动化 · 2024级<br>两年RM，从队员到队长，8项国奖。用机械说话，用战绩证明。</p>
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring"></div>
+        <img src="https://i.postimg.cc/Njy3rmnz/IMG-20251021-223934.jpg" alt="童鑫" class="avatar" loading="eager">
+        <div class="status-badge"></div>
+      </div>
+      <h1>童鑫</h1>
+      <div class="tagline">RoboMaster队长 · 机械设计 · 仿真分析 · 团队管理</div>
+      <p class="hero-desc">
+        文华学院 · 机械设计制造及其自动化 · 2024级<br>
+        两年RM，从队员到队长，8项国奖。用机械说话，用战绩证明。
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value" data-count="8">0</div>
+          <div class="stat-label">国家级奖项</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" data-count="20">0</div>
+          <div class="stat-label">团队规模</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" data-count="2">0</div>
+          <div class="stat-label">RM赛季</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </section>
 
   <section id="about" class="section">
-    <h2 class="section-title"><span>📌 关于我</span></h2>
+    <div class="section-header reveal">
+      <h2 class="section-title">📌 关于我</h2>
+      <p class="section-subtitle">教育背景与核心能力</p>
+      <div class="divider"></div>
+    </div>
     <div class="about-grid">
-      <div class="about-card">
-        <h3>🎓 教育背景</h3>
-        <p><strong>文华学院</strong><br>机械设计制造及其自动化 · 本科<br>2024 - 2028</p>
-        <p style="margin-top:0.8rem;">班级学习委员<br>校级优秀信息员<br>搭建班级学习交流平台，组织答疑、备考互助10+场</p>
+      <div class="card about-card reveal">
+        <h3><i class="fas fa-graduation-cap"></i> 教育背景</h3>
+        <p><strong style="color: var(--text); font-size: 1.1rem;">文华学院</strong><br>
+        机械设计制造及其自动化 · 本科<br>
+        2024 - 2028</p>
+        <div style="margin-top: 1rem;">
+          <p><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.3rem;"></i> 班级学习委员</p>
+          <p><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.3rem;"></i> 校级优秀信息员</p>
+          <p><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.3rem;"></i> 搭建班级学习交流平台，组织答疑、备考互助 10+ 场</p>
+        </div>
       </div>
-      <div class="about-card">
-        <h3>🏆 核心能力</h3>
+      <div class="card about-card reveal">
+        <h3><i class="fas fa-cogs"></i> 核心能力</h3>
         <ul>
-          <li><strong>机械结构设计与仿真分析</strong></li>
-          <li>熟练使用SolidWorks、AutoCAD、ANSYS Workbench，独立完成从三维建模、静力学分析到工程图输出的全流程</li>
-          <li>在RoboMaster机甲大师赛中担任战队队长，主导设计步兵机器人机械结构，拓扑优化减重约15%-20%，成果已加工实物并上场比赛</li>
-          <li>累计国家级奖项8项（步兵对抗赛亚军、3v3八强等）</li>
-          <li>熟悉机加工工艺及3D打印，家庭有加工条件，对图纸到成品的落地过程有实际把控经验</li>
+          <li><strong style="color: var(--text);">机械结构设计与仿真分析</strong></li>
+          <li>熟练使用 SolidWorks、AutoCAD、ANSYS Workbench，独立完成从三维建模、静力学分析到工程图输出的全流程</li>
+          <li>在 RoboMaster 机甲大师赛中担任战队队长，主导设计步兵机器人机械结构，拓扑优化减重约 15%-20%，成果已加工实物并上场比赛</li>
+          <li>累计国家级奖项 8 项（步兵对抗赛亚军、3v3 八强等）</li>
+          <li>熟悉机加工工艺及 3D 打印，家庭有加工条件，对图纸到成品的落地过程有实际把控经验</li>
         </ul>
-        <p style="margin-top:1rem; padding:0.8rem; background:rgba(26,86,219,0.05); border-radius:8px; color:#1a56db; font-weight:600; text-align:center;">
-          📍 正在找暑期机械结构设计相关实习，希望能有机会面试
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="certs" class="section" style="padding-top:2rem;">
-    <h2 class="section-title"><span>🏅 获奖证书</span></h2>
-    <div class="cert-grid">
-      <img src="https://i.postimg.cc/ncydHwby/17daf8e722b14176b95ca86e296fe296.png" alt="证书1" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/jdp8sk09/1a9250bcaecc4e85953712fe2a2e7396.png" alt="证书2" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/8zLZsBTL/2.png" alt="证书3" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/Bn2mtcJH/3.png" alt="证书4" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/4ND8JFR4/41e0fac0d5de46dd9546bdc291df15d7.png" alt="证书5" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/YCQdjfth/aa50663ea4ac43a38b1054221f5e80b8.png" alt="证书6" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/W105t6sz/c0e878e7fa6f4eb9b22574d584f7f012.png" alt="证书7" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/Dw1xmd7s/d7e18c3c1a3d45348404a2f3338e928e.png" alt="证书8" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/1t3BWkwc/RMUL-2025ji-qi-ren-jing-ji-jiang-3V3dui-kang-sai-479.png" alt="证书9" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/V6kg7xXQ/RMUL-2025ji-qi-ren-jing-ji-jiang-3V3dui-kang-sai-480.png" alt="证书10" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/4dxP8DV6/WPS-tu-pian.png" alt="证书11" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/wvj2WCL2/WPS-tu-pian-(1).png" alt="证书12" onclick="openCert(this.src)">
-      <img src="https://i.postimg.cc/50K3Dsmc/tu-pian.png" alt="证书13" onclick="openCert(this.src)">
-    </div>
-  </section>
-
-  <div class="cert-overlay" id="certOverlay" onclick="closeCert()">
-    <span class="close-btn">&times;</span>
-    <img src="" alt="证书" id="certOverlayImg">
-  </div>
-
-  <section id="projects" class="section">
-    <h2 class="section-title"><span>🔧 项目经历</span></h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>RoboMaster 机甲大师高校联盟赛</h3>
-        <div class="role">战队队长 · 2024.09 - 至今</div>
-        <p>带领20人跨学科团队（机械/电控/视觉/运营），主导机器人机械结构设计、三维建模、有限元分析及图纸输出；协调电控系统调试及算法优化；制定备赛计划，跟进各组进度。<br><br>
-        🏆 2025赛季步兵对抗赛团体亚军、3v3三等奖<br>
-        🏆 2026赛季3v3八强、步兵对抗赛季军</p>
-       <iframe src="//player.bilibili.com/player.html?bvid=BV1GoLV6iEkh" style="width:100%; height:200px; border:none; border-radius:8px; margin-top:0.8rem;" allowfullscreen></iframe>
-      </div>
-      <div class="project-card">
-        <h3>商业仿真项目</h3>
-        <div class="role">独立完成 · SolidWorks动画仿真</div>
-        <p>为公司完成SW动画仿真，20小时独立交付。涵盖运动学仿真与动画渲染。</p>
-        <div class="video-placeholder">
-          <iframe src="//player.bilibili.com/player.html?bvid=BV18CL56PEpW" style="width:100%; height:200px; border:none; border-radius:8px;" allowfullscreen></iframe>
+        <div class="highlight-box">
+          <p><i class="fas fa-briefcase" style="margin-right: 0.5rem;"></i>正在找暑期机械结构设计相关实习，希望能有机会面试</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="section">
-    <h2 class="section-title"><span>🛠️ 技能</span></h2>
-    <div class="skills">
-      <div class="skill-tag">SolidWorks</div>
-      <div class="skill-tag">AutoCAD</div>
-      <div class="skill-tag">ANSYS Workbench</div>
-      <div class="skill-tag">有限元分析</div>
-      <div class="skill-tag">拓扑优化</div>
-      <div class="skill-tag">机加工工艺</div>
-      <div class="skill-tag">3D打印</div>
-      <div class="skill-tag">团队管理</div>
-      <div class="skill-tag">项目统筹</div>
-      <div class="skill-tag">对外沟通</div>
+  <section id="certs" class="section cert-section">
+    <div class="section-header reveal">
+      <h2 class="section-title">🏅 获奖证书</h2>
+      <p class="section-subtitle">点击证书查看大图，支持左右切换</p>
+      <div class="divider"></div>
+    </div>
+    <div class="cert-grid" id="certGrid">
+      <div class="cert-item reveal" data-index="0">
+        <img src="https://i.postimg.cc/ncydHwby/17daf8e722b14176b95ca86e296fe296.png" alt="证书1" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="1">
+        <img src="https://i.postimg.cc/jdp8sk09/1a9250bcaecc4e85953712fe2a2e7396.png" alt="证书2" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="2">
+        <img src="https://i.postimg.cc/8zLZsBTL/2.png" alt="证书3" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="3">
+        <img src="https://i.postimg.cc/Bn2mtcJH/3.png" alt="证书4" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="4">
+        <img src="https://i.postimg.cc/4ND8JFR4/41e0fac0d5de46dd9546bdc291df15d7.png" alt="证书5" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="5">
+        <img src="https://i.postimg.cc/YCQdjfth/aa50663ea4ac43a38b1054221f5e80b8.png" alt="证书6" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="6">
+        <img src="https://i.postimg.cc/W105t6sz/c0e878e7fa6f4eb9b22574d584f7f012.png" alt="证书7" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="7">
+        <img src="https://i.postimg.cc/Dw1xmd7s/d7e18c3c1a3d45348404a2f3338e928e.png" alt="证书8" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="8">
+        <img src="https://i.postimg.cc/1t3BWkwc/RMUL-2025ji-qi-ren-jing-ji-jiang-3V3dui-kang-sai-479.png" alt="证书9" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="9">
+        <img src="https://i.postimg.cc/V6kg7xXQ/RMUL-2025ji-qi-ren-jing-ji-jiang-3V3dui-kang-sai-480.png" alt="证书10" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="10">
+        <img src="https://i.postimg.cc/4dxP8DV6/WPS-tu-pian.png" alt="证书11" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="11">
+        <img src="https://i.postimg.cc/wvj2WCL2/WPS-tu-pian-(1).png" alt="证书12" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+      <div class="cert-item reveal" data-index="12">
+        <img src="https://i.postimg.cc/50K3Dsmc/tu-pian.png" alt="证书13" loading="lazy">
+        <div class="cert-overlay-text"><span>查看详情</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></span>
+    <span class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></span>
+    <img src="" alt="证书预览" id="lightboxImg">
+    <span class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></span>
+  </div>
+
+  <section id="projects" class="section">
+    <div class="section-header reveal">
+      <h2 class="section-title">🔧 项目经历</h2>
+      <p class="section-subtitle">实战项目与竞赛成果</p>
+      <div class="divider"></div>
+    </div>
+    <div class="project-grid">
+      <div class="card project-card reveal">
+        <div class="project-meta">
+          <div>
+            <h3>RoboMaster 机甲大师高校联盟赛</h3>
+            <span class="project-role"><i class="fas fa-user-shield" style="margin-right: 0.3rem;"></i>战队队长</span>
+          </div>
+          <span class="project-date">2024.09 - 至今</span>
+        </div>
+        <p class="project-desc">
+          带领 20 人跨学科团队（机械/电控/视觉/运营），主导机器人机械结构设计、三维建模、有限元分析及图纸输出；协调电控系统调试及算法优化；制定备赛计划，跟进各组进度。
+        </p>
+        <div class="awards">
+          <span class="award-tag"><i class="fas fa-trophy"></i> 2025 步兵对抗赛团体亚军</span>
+          <span class="award-tag"><i class="fas fa-medal"></i> 2025 3v3 三等奖</span>
+          <span class="award-tag"><i class="fas fa-trophy"></i> 2026 3v3 八强</span>
+          <span class="award-tag"><i class="fas fa-medal"></i> 2026 步兵对抗赛季军</span>
+        </div>
+      </div>
+      
+      <div class="card project-card reveal">
+        <div class="project-meta">
+          <div>
+            <h3>商业仿真项目</h3>
+            <span class="project-role"><i class="fas fa-laptop-code" style="margin-right: 0.3rem;"></i>独立完成</span>
+          </div>
+          <span class="project-date">SolidWorks 动画仿真</span>
+        </div>
+        <p class="project-desc">
+          为公司完成 SW 动画仿真，20 小时独立交付。涵盖运动学仿真与动画渲染，快速响应客户需求，高效完成交付。
+        </p>
+        <div class="video-container">
+          <div class="video-placeholder">
+            <i class="fas fa-play-circle"></i>
+            <span>演示视频（待上传）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section skills-section">
+    <div class="section-header reveal">
+      <h2 class="section-title">🛠️ 技能栈</h2>
+      <p class="section-subtitle">工具与技术能力</p>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-container">
+      <div class="skill-tag"><i class="fas fa-cube"></i>SolidWorks</div>
+      <div class="skill-tag"><i class="fas fa-drafting-compass"></i>AutoCAD</div>
+      <div class="skill-tag"><i class="fas fa-chart-line"></i>ANSYS Workbench</div>
+      <div class="skill-tag"><i class="fas fa-calculator"></i>有限元分析</div>
+      <div class="skill-tag"><i class="fas fa-weight-hanging"></i>拓扑优化</div>
+      <div class="skill-tag"><i class="fas fa-industry"></i>机加工工艺</div>
+      <div class="skill-tag"><i class="fas fa-print"></i>3D打印</div>
+      <div class="skill-tag"><i class="fas fa-users"></i>团队管理</div>
+      <div class="skill-tag"><i class="fas fa-tasks"></i>项目统筹</div>
+      <div class="skill-tag"><i class="fas fa-comments"></i>对外沟通</div>
     </div>
   </section>
 
   <section id="contact" class="section">
-    <h2 class="section-title"><span>📬 联系方式</span></h2>
-    <div class="contact-card">
-      <p style="margin-bottom:1rem; color:#4a5568;">欢迎技术交流、项目合作</p>
-      <p><i class="fab fa-qq"></i> QQ：2272420967</p>
+    <div class="section-header reveal">
+      <h2 class="section-title">📬 联系我</h2>
+      <p class="section-subtitle">欢迎技术交流、项目合作与实习机会</p>
+      <div class="divider"></div>
+    </div>
+    <div class="card contact-card reveal">
+      <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+        目前正在寻找暑期机械结构设计相关实习机会，期待与您的交流。
+      </p>
+      <div class="contact-links">
+        <a href="mailto:tongxin@example.com" class="contact-link">
+          <i class="fas fa-envelope"></i> 邮箱联系
+        </a>
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=2272420967" target="_blank" class="contact-link">
+          <i class="fab fa-qq"></i> QQ 交流
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
-    © 2026 童鑫  |  RoboMaster队长 | 机械设计制造及其自动化
+    <div class="footer-content">
+      <div class="footer-social">
+        <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-link" title="Bilibili"><i class="fab fa-bilibili"></i></a>
+        <a href="#" class="social-link" title="知乎"><i class="fab fa-zhihu"></i></a>
+        <a href="mailto:tongxin@example.com" class="social-link" title="邮箱"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p> 2026 童鑫 · RoboMaster队长 · 机械设计制造及其自动化</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">用机械说话，用战绩证明</p>
+    </div>
   </footer>
 
+  <div class="float-actions">
+    <button class="float-btn" id="backToTop" title="回到顶部">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <button class="float-btn" id="themeFloat" title="切换主题">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
   <script>
-    function openCert(src) {
-      document.getElementById('certOverlayImg').src = src;
-      document.getElementById('certOverlay').classList.add('active');
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    const themeFloat = document.getElementById('themeFloat');
+    const html = document.documentElement;
+    const icon = themeToggle.querySelector('i');
+    const floatIcon = themeFloat.querySelector('i');
+
+    function toggleTheme() {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        icon.className = 'fas fa-moon';
+        floatIcon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        icon.className = 'fas fa-sun';
+        floatIcon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+      }
     }
-    function closeCert() {
-      document.getElementById('certOverlay').classList.remove('active');
+
+    // 初始化主题
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.setAttribute('data-theme', 'dark');
+      icon.className = 'fas fa-sun';
+      floatIcon.className = 'fas fa-sun';
     }
+
+    themeToggle.addEventListener('click', toggleTheme);
+    themeFloat.addEventListener('click', toggleTheme);
+
+    // 移动端菜单
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = mobileToggle.querySelector('i');
+      icon.className = navLinks.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    // 点击链接关闭菜单
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileToggle.querySelector('i').className = 'fas fa-bars';
+      });
+    });
+
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // 滚动显示动画
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 数字计数动画
+    const counters = document.querySelectorAll('.stat-value');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.getAttribute('data-count'));
+          let current = 0;
+          const increment = target / 50;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              entry.target.textContent = target;
+              clearInterval(timer);
+            } else {
+              entry.target.textContent = Math.floor(current);
+            }
+          }, 30);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => countObserver.observe(counter));
+
+    // 证书灯箱
+    const certItems = document.querySelectorAll('.cert-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    let currentCertIndex = 0;
+    const certImages = Array.from(certItems).map(item => item.querySelector('img').src);
+
+    function openLightbox(index) {
+      currentCertIndex = index;
+      lightboxImg.src = certImages[index];
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function nextCert() {
+      currentCertIndex = (currentCertIndex + 1) % certImages.length;
+      lightboxImg.src = certImages[currentCertIndex];
+    }
+
+    function prevCert() {
+      currentCertIndex = (currentCertIndex - 1 + certImages.length) % certImages.length;
+      lightboxImg.src = certImages[currentCertIndex];
+    }
+
+    certItems.forEach((item, index) => {
+      item.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextCert(); });
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevCert(); });
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // 键盘导航
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextCert();
+      if (e.key === 'ArrowLeft') prevCert();
+    });
+
+    // 回到顶部
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 隐藏/显示回到顶部
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.style.opacity = '1';
+        backToTop.style.pointerEvents = 'all';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.pointerEvents = 'none';
+      }
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // 性能：图片懒加载错误处理
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.addEventListener('error', function() {
+        this.style.display = 'none';
+        const parent = this.parentElement;
+        if (parent.classList.contains('cert-item')) {
+          parent.style.background = 'var(--bg)';
+          parent.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);font-size:0.85rem;">证书加载中...</div>';
+        }
+      });
+    });
   </script>
 </body>
 </html>
